@@ -6,6 +6,5 @@ export const HomePage = () => {
     const context = useContext(PriceContext);
 
     context?.test();
-
     return (<p>HomePage</p>);
 }
