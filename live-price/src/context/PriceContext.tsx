@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 
 type ContextType = {
     test: any;
+    currentBlock: number;
 };
 
 export const PriceContext = React.createContext<undefined | ContextType>(undefined);
@@ -12,7 +13,7 @@ const { ethereum } = window;
 export const PriceProvider = ({ children } : { children : any }) => {
 
     const [currentAccount, setCurrentAccount] = useState('0x97f8c83e0d4eb5c8305bfcb14f33d37eaf0c6428');
-    
+    const [currentBlock, setCurrentBlock] = useState(9999);
     const connectWallet = async () => {
         try {
             if(!ethereum) return alert("Please install metamask");
@@ -187,19 +188,17 @@ export const PriceProvider = ({ children } : { children : any }) => {
             1000);
         const provider = new ethers.providers.WebSocketProvider('wss://mainnet.infura.io/ws/v3/c1f511c8b9ed45f095ef00b69e87b758');
         provider.on('block', async (blockNumber) => {
-            console.log('New Block: ' + blockNumber);
-            
+            setCurrentBlock(blockNumber)
             const result = await contract.getExpectedRate(
                 '0x6B175474E89094C44Da98b954EedeAC495271d0F',
                 '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
                 1000);
-            
-                console.log('kyber test', result);
           });
     }
 
     const contextType: ContextType = {
         test: test,
+        currentBlock: currentBlock,
     }
 
     useEffect(() => {
