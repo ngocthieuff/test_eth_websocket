@@ -5,7 +5,6 @@ export const HomePage = () => {
 
     const context = useContext(PriceContext);
 
-    context?.test();
     return (<div>
         <p>Current block {context?.currentBlock}</p>
     </div>);
