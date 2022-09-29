@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
-import { HomePage } from './pages/HomePage';
 import { PriceProvider } from './context/PriceContext';
+import HomePage from './pages/HomePage';
 
 function App() {
   return (
-    <PriceProvider>
-      <HomePage />
-    </PriceProvider>
+      <PriceProvider>
+          <HomePage />
+      </PriceProvider>
   );
 }
 

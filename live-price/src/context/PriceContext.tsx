@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 type ContextType = {
     fetchNewBlock: any;
     currentBlock: number;
+    currentAccount: string;
+    connectWallet: any;
 };
 
 export const PriceContext = React.createContext<undefined | ContextType>(undefined);
@@ -39,6 +41,8 @@ export const PriceProvider = ({ children } : { children : any }) => {
     const contextType: ContextType = {
         fetchNewBlock: fetchNewBlock,
         currentBlock: currentBlock,
+        currentAccount: currentAccount,
+        connectWallet: connectWallet,
     }
 
     useEffect(() => {
